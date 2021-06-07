@@ -56,30 +56,24 @@ body {
 }
 
 .container input[type="text"]:nth-of-type(1) {
-  background: url(../img/user.svg);
-  background-repeat: no-repeat;
-  background-size: 40px;
-}
-
-.container input[type="text"]:nth-of-type(2) {
   background: url(../img/email.svg);
   background-repeat: no-repeat;
   background-size: 40px;
 }
 
-.container input[type="text"]:nth-of-type(3) {
+.container input[type="text"]:nth-of-type(2) {
   background: url(../img/password.svg);
   background-repeat: no-repeat;
   background-size: 40px;
 }
 
-.container input[type="text"]:nth-of-type(4) {
+.container input[type="text"]:nth-of-type(3) {
   background: url(../img/phone.svg);
   background-repeat: no-repeat;
   background-size: 40px;
 }
 
-.container input[type="text"]:nth-of-type(5) {
+.container input[type="text"]:nth-of-type(4) {
   background: url(../img/map.svg);
   background-repeat: no-repeat;
   background-size: 40px;

@@ -8,41 +8,28 @@
 
 <head>
 
-    <title>Produtos - Listagem</title>
+    <title>Municipios - Listagem</title>
     
     <c:set value="${pageContext.request.contextPath}" var="contextPath"/>
     
+<link href="${contextPath}/css/list.css" rel="stylesheet">
     <link href="${contextPath}/css/bootstrap.css" rel="stylesheet">
     <link href="${contextPath}/css/small-business.css" rel="stylesheet">
 
 </head>
 
 <body>
-    
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-			<div class="collapse navbar-collapse"="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li><a href="${contextPath}/produto">Produtos</a></li>
-					<li><a href="${contextPath}/categoria">Categorias</a></li>
-				</ul>
-			</div>
-		</div>
-    </nav>
-    
-    
 
     <div class="container">
         <div class="row">
             <div class="col-md-12">
 				
-				<h1>Produtos</h1>
+				<h1>Municipios</h1>
 				
 				<p class="toolbar">
-				
+					<a href="${contextPath}"><button class="btn btn-default">Voltar</button></a>
 					<a class="create btn btn-default" href="${contextPath}/municipio/form?page=cadastroMunicipio">Novo Município</a>
 	
-					<span class="alert"></span>
 				</p>
 				
 				<c:if test="${not empty messages}">
