@@ -1,5 +1,7 @@
 package br.com.elit.stonks.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +94,8 @@ public class UsuarioController {
 		usuarioRep.deleteById(id);
 		redirectAttributes.addFlashAttribute("messages", "usuario excluido com sucesso!");
 
+		UsuarioModel senha = (UsuarioModel) usuarioRep.findByName("teste");
+		
 		return "redirect:/usuario";
 	}
 	
