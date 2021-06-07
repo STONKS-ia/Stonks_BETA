@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page isErrorPage="true" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -19,12 +20,13 @@
 </head>
 <body>
 	<form:form modelAttribute="municipioModel" action="${contextPath}/municipio/${municipioModel.idMunicipio}" method="put" class="container">
+	
 		<h1>Atualizar Municipio</h1>
 		
-		<form:input type="text" path="nomeMunicipio" id="municipio"	name="municipio" placeholder="Nome Município" />
+		<form:input type="text" path="nomeMunicipio" id="municipio"	name="municipio" placeholder="Nome Município" maxlength="50" size="50" />
 		<font color="red"><form:errors path="nomeMunicipio"/></font><br/>
 		
-		<form:input type="text" path="urlPortal" id="portal" name="portal" placeholder="Portal de transparência" />
+		<form:input type="text" path="urlPortal" id="portal" name="portal" placeholder="Portal de transparência" maxlength="50" size="50" />
 		<font color="red"><form:errors path="urlPortal"/></font><br/>
 		
 		<button type="submit">Mandar</button>
