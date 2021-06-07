@@ -23,8 +23,8 @@
 				amet, consectetur adipisicing.</span>
 		</h2>
 		<div class="btns">
-			<a href="${contextPath}/usuario/login?action=signIn"><button class="btn btn--primary">Logar</button></a>
-			<a href="${contextPath}/usuario/login?action=signUp"><button class="btn">Cadastrar</button></a>
+			<a href="${contextPath}/usuario/login?action=SignIn"><button class="btn btn--primary">Logar</button></a>
+			<a href="${contextPath}/usuario/login?action=SignUp"><button class="btn">Cadastrar</button></a>
 		</div>
 		<div class="hill"></div>
 	</header>
