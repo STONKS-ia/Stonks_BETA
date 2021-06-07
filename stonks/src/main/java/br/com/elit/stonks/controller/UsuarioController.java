@@ -50,7 +50,7 @@ public class UsuarioController {
 	
 	@GetMapping
 	public String getAll(Model model) {		
-		return "usuario/signUp";		
+		return "index";		
 	}
 	
 	@GetMapping("/{id}")

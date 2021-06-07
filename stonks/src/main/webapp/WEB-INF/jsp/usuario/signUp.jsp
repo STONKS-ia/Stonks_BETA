@@ -20,12 +20,6 @@
 <body>
 	<form:form modelAttribute="usuarioModel"
 		action="${contextPath}/usuario" method="post" class="container">
-		
-		<spring:hasBindErrors name="usuarioModel">
-			<div class="alert alert-danger" role="alert">
-				<form:errors path="*" class="has-error" />
-			</div>
-		</spring:hasBindErrors>
 
 		<h1>Novo Usuário</h1>
 		

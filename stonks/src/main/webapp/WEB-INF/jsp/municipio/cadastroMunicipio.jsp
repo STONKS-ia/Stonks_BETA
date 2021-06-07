@@ -21,21 +21,15 @@
 	<form:form modelAttribute="municipioModel"
 		action="${contextPath}/municipio" method="post" class="container">
 
-		<spring:hasBindErrors name="municipioModel">
-			<div class="alert alert-danger" role="alert">
-				<form:errors path="*" class="has-error" />
-			</div>
-		</spring:hasBindErrors>
-
 		<h1>Novo Município</h1>
 
 		<form:input type="text" path="nomeMunicipio" id="municipio"
-			name="municipio" placeholder="Nome Município" />
+			name="municipio" placeholder="Nome Município" maxlength="50" size="50" />
 		<font color="red"><form:errors path="nomeMunicipio" /></font>
 		<br />
 
 		<form:input type="text" path="urlPortal" id="portal" name="portal"
-			placeholder="Portal de transparência" />
+			placeholder="Portal de transparência" maxlength="50" size="50"  />
 		<font color="red"><form:errors path="urlPortal" /></font>
 		<br />
 

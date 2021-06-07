@@ -43,12 +43,9 @@ public class MunicipioModel {
 		return idMunicipio;
 	}
 
-
-
 	public void setIdMunicipio(int idMunicipio) {
 		this.idMunicipio = idMunicipio;
 	}
-
 
 	@Column(name="NOME_MUNICIPIO")
 	@Size(min = 2, max = 50, message = "NOME deve ser entre 2 e 50 caracteres")
@@ -56,20 +53,15 @@ public class MunicipioModel {
 		return nomeMunicipio;
 	}
 
-
-
 	public void setNomeMunicipio(String nomeMunicipio) {
 		this.nomeMunicipio = nomeMunicipio;
 	}
 
-
 	@Column(name="URL_PORTAL")
-	@Size(min = 2, max = 50, message = "URL deve ser entre 2 e 50 caracteres")
+	@Size(min = 7, max = 50, message = "URL deve ser entre 7 e 50 caracteres")
 	public String getUrlPortal() {
 		return urlPortal;
 	}
-
-
 
 	public void setUrlPortal(String urlPortal) {
 		this.urlPortal = urlPortal;
@@ -82,7 +74,6 @@ public class MunicipioModel {
 	
 	public void setUsuarios(List<UsuarioModel> usuarios) {
 		this.usuarios = usuarios;
-	}
-	
+	}	
 	
 }

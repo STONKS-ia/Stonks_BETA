@@ -56,13 +56,17 @@ public class MunicipioController {
 		
 		model.addAttribute("municipio", municipioRep.findById(id).get());
 		
-		return MUNICIPIO_FOLDER + "municipio-detalhe";
+		return MUNICIPIO_FOLDER + "atualizarMunicipio";
 	}
 	
 	
 	@PostMapping
-	public String save(MunicipioModel municipioModel,  BindingResult bindingResult, RedirectAttributes redirectAttributes){
+	public String save(@Valid MunicipioModel municipioModel,  BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model){
 	
+		if(bindingResult.hasErrors()) {
+			return MUNICIPIO_FOLDER + "cadastroMunicipio";
+		}
+		
 		municipioRep.save(municipioModel);
 		redirectAttributes.addFlashAttribute("messages", "Municipio cadastrado com sucesso");		
 		
@@ -72,6 +76,10 @@ public class MunicipioController {
 	
 	@PutMapping("/{id}")
 	public String update(@PathVariable("id") int id, @Valid MunicipioModel municipioModel, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+		
+		if(bindingResult.hasErrors()) {
+			return MUNICIPIO_FOLDER + "atualizarMunicipio";
+		}
 		
 		municipioModel.setIdMunicipio(id);
 		municipioRep.save(municipioModel);
