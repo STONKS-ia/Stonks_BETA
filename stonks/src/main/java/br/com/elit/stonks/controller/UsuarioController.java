@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.elit.stonks.model.MunicipioModel;
 import br.com.elit.stonks.model.UsuarioModel;
 import br.com.elit.stonks.repository.UsuarioRepository;
 
@@ -31,9 +32,18 @@ public class UsuarioController {
 	UsuarioRepository usuarioRep;
 	
 	
-	@GetMapping("/login")
-	public String openForm(@RequestParam String action, @ModelAttribute("usuarioModel") UsuarioModel usuarioModel) {				
-		return USUARIO_FOLDER + action;
+	
+	@GetMapping("/form")
+	public String openForm(@RequestParam String page, 
+			@RequestParam(required= false) Integer id, 
+			@ModelAttribute("usuarioModel")  UsuarioModel usuarioModel,
+			Model model) {
+		
+		if ("atualizarUsuario".equals(page)) {
+			
+			model.addAttribute("municipioModel", usuarioRep.findById(id).get());
+		}
+		return USUARIO_FOLDER + page;
 	}
 	
 //	@GetMapping("/form")
@@ -52,7 +62,10 @@ public class UsuarioController {
 	
 	@GetMapping
 	public String getAll(Model model) {		
-		return "index";		
+		
+		model.addAttribute("usuarios", usuarioRep.findAll());
+		
+		return USUARIO_FOLDER + "usuarios";		
 	}
 	
 	@GetMapping("/{id}")
@@ -94,9 +107,21 @@ public class UsuarioController {
 		usuarioRep.deleteById(id);
 		redirectAttributes.addFlashAttribute("messages", "usuario excluido com sucesso!");
 
-		UsuarioModel senha = (UsuarioModel) usuarioRep.findByName("teste");
+		
 		
 		return "redirect:/usuario";
 	}
+	
+	
+	@GetMapping("/{email}")
+	public String login(@PathVariable("email") String email, Model model, String senha) {
+		
+
+		
+		return USUARIO_FOLDER + "usuario-detalhe";
+	}
+	
+	
+	
 	
 }

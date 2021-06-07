@@ -11,8 +11,8 @@ import br.com.elit.stonks.model.UsuarioModel;
 public interface UsuarioRepository extends JpaRepository<UsuarioModel, Integer>{
 
 	
-	@Query("SELECT USUARIOS.SENHA  FROM USUARIOS USUARIOS WHERE USUARIOS.EMAIL = ?;")
-	List<UsuarioModel> findByName(@Param("email") String email);
+	//@Query("SELECT USUARIOS.SENHA  FROM USUARIOS USUARIOS WHERE USUARIOS.EMAIL = ?;")
+	//List<UsuarioModel> findByName(@Param("email") String email);
 		
 	
 }

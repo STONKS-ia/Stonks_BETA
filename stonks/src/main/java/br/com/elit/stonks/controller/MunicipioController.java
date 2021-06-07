@@ -93,7 +93,7 @@ public class MunicipioController {
 	public String deleteById(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
 		
 		municipioRep.deleteById(id);
-		redirectAttributes.addFlashAttribute("messages", "usuario excluido com sucesso!");
+		redirectAttributes.addFlashAttribute("messages", "Municipio excluido com sucesso!");
 
 		return "redirect:/municipio";
 	}
