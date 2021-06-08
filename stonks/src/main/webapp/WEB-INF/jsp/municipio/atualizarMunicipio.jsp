@@ -29,7 +29,7 @@
 		<form:input type="text" path="urlPortal" id="portal" name="portal" placeholder="Portal de transparência" maxlength="50" size="50" />
 		<font color="red"><form:errors path="urlPortal"/></font><br/>
 		
-		<button type="submit">Mandar</button>
+		<button type="submit">Atualizar</button>
 	</form:form>
 </body>
 </html>

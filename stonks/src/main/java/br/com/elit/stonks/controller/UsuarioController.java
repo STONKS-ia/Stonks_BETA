@@ -1,7 +1,5 @@
 package br.com.elit.stonks.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.elit.stonks.model.MunicipioModel;
 import br.com.elit.stonks.model.UsuarioModel;
 import br.com.elit.stonks.repository.UsuarioRepository;
 
@@ -39,26 +36,12 @@ public class UsuarioController {
 			@ModelAttribute("usuarioModel")  UsuarioModel usuarioModel,
 			Model model) {
 		
-		if ("atualizarUsuario".equals(page)) {
-			
-			model.addAttribute("municipioModel", usuarioRep.findById(id).get());
+		if ("atualizarUsuario".equals(page)) {			
+			model.addAttribute("usuarioModel", usuarioRep.findById(id).get());
 		}
 		return USUARIO_FOLDER + page;
 	}
 	
-//	@GetMapping("/form")
-//	public String openForm(@RequestParam String page) {				
-//		return USUARIO_FOLDER + page;
-//	}
-	
-//	@GetMapping
-//	public String getAll(Model model) {
-//		
-//		model.addAttribute("usuarios", usuarioRep.findAll());
-//		
-//		return USUARIO_FOLDER + "usuarios";
-//		
-//	}
 	
 	@GetMapping
 	public String getAll(Model model) {		
@@ -91,7 +74,11 @@ public class UsuarioController {
 	
 	
 	@PutMapping("/{id}")
-	public String update(@PathVariable("id") int id, UsuarioModel usuarioModel, RedirectAttributes redirectAttributes) {
+	public String update(@PathVariable("id") int id, @Valid UsuarioModel usuarioModel, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+		
+		if(bindingResult.hasErrors()) {
+			return USUARIO_FOLDER + "atualizarUsuario";
+		}
 		
 		usuarioModel.setIdUsuario(id);
 		usuarioRep.save(usuarioModel);
@@ -114,10 +101,7 @@ public class UsuarioController {
 	
 	
 	@GetMapping("/{email}")
-	public String login(@PathVariable("email") String email, Model model, String senha) {
-		
-
-		
+	public String login(@PathVariable("email") String email, Model model, String senha) {		
 		return USUARIO_FOLDER + "usuario-detalhe";
 	}
 	

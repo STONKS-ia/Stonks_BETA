@@ -61,8 +61,7 @@
 							
 								<form:form action="${contextPath}/usuario/${usuarios.idUsuario}" method="delete">
 								
-									<a class="btn btn-success btn-xs" href="${contextPath}/usuario/${usuarios.idUsuario}">Detalhes</a>
-									<a class="btn btn-warning btn-xs" href="${contextPath}/usuario/form?page=atualizarMunicipio&id=${usuarios.idUsuario}">Editar</a>
+									<a class="btn btn-success btn-xs" href="${contextPath}/usuario/form?page=atualizarUsuario&id=${usuarios.idUsuario}">Editar</a>
 									<input type="submit" value="Excluir" class="btn btn-danger btn-xs">
 								</form:form>
 								

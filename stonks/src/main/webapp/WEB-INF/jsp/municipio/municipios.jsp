@@ -55,8 +55,7 @@
 							
 								<form:form action="${contextPath}/municipio/${municipio.idMunicipio}" method="delete">
 								
-									<a class="btn btn-success btn-xs" href="${contextPath}/municipio/${municipio.idMunicipio}">Detalhes</a>
-									<a class="btn btn-warning btn-xs" href="${contextPath}/municipio/form?page=atualizarMunicipio&id=${municipio.idMunicipio}">Editar</a>
+									<a class="btn btn-success btn-xs" href="${contextPath}/municipio/form?page=atualizarMunicipio&id=${municipio.idMunicipio}">Editar</a>
 									<input type="submit" value="Excluir" class="btn btn-danger btn-xs">
 								</form:form>
 								
