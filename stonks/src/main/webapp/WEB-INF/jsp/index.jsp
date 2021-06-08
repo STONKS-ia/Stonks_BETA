@@ -19,8 +19,7 @@
 			<div class="arrow"></div>
 		</h1>
 		<h2 class="slogan">
-			stripe landing page.<span class="ps"> Lorem ipsum dolor sit
-				amet, consectetur adipisicing.</span>
+			Seja Bem Vindo.<span class="ps"> Essa é a tela administrativa.</span>
 		</h2>
 		<div class="btns">
 			<a href="${contextPath}/municipio"><button class="btn btn--primary">Municipio</button></a>

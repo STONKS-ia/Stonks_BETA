@@ -31,7 +31,7 @@
 		<font color="red"><form:errors path="email" /></font>
 		<br />
 
-		<form:input type="text" path="senha" id="password" name="password"
+		<form:input type="password" path="senha" id="password" name="password"
 			placeholder="Senha" maxlength="50" size="50"  />
 		<font color="red"><form:errors path="senha" /></font>
 		<br />
