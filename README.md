@@ -2,7 +2,7 @@
 
 Nesse projeto focamos em criar a tela de administracao do nosso challenge, onde é possivél criar usuarios e municipios. 
 
-Para fazer o banco de dados funcionar, executar o script abaixo no SQL:
+Para fazer o banco de dados funcionar, executar o script abaixo no SQL e logar com sua conta no applicationProperties:
 
 ```
 CREATE TABLE MUNICIPIOS (
