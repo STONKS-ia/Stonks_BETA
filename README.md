@@ -4,7 +4,7 @@ Nesse projeto focamos em criar a tela de administracao do nosso challenge, onde 
 
 Para fazer o banco de dados funcionar, executar o script abaixo no SQL:
 
-'''CREATE TABLE MUNICIPIOS (
+```CREATE TABLE MUNICIPIOS (
     ID_MUNICIPIO     NUMBER(38) NOT NULL PRIMARY KEY,
     NOME_MUNICIPIO  VARCHAR2(100) NOT NULL,
     URL_PORTAL      VARCHAR2(100) NOT NULL
@@ -56,5 +56,5 @@ INSERT INTO USUARIOS(EMAIL, TELEFONE, SENHA, ID_MUNICIPIO) VALUES ('email@email.
 
 commit;
 
-SELECT * FROM USUARIOS;'''
+SELECT * FROM USUARIOS;```
 
