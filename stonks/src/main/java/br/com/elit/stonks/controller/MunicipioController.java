@@ -1,101 +1,77 @@
 package br.com.elit.stonks.controller;
 
 import javax.validation.Valid;
-
+;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.elit.stonks.model.MunicipioModel;
 import br.com.elit.stonks.repository.MunicipioRepository;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-@Controller
+import java.net.URI;
+import java.util.List;
+
+@RestController
 @RequestMapping("/municipio")
 public class MunicipioController {
-
-	private static final String MUNICIPIO_FOLDER = "municipio/";
 	
 	@Autowired
 	MunicipioRepository municipioRep;
-	
-	
-	@GetMapping("/form")
-	public String openForm(@RequestParam String page, 
-			@RequestParam(required= false) Integer id, 
-			@ModelAttribute("municipioModel")  MunicipioModel municipioModel,
-			Model model) {
-		
-		if ("atualizarMunicipio".equals(page)) {
-			
-			model.addAttribute("municipioModel", municipioRep.findById(id).get());
-		}
-		return MUNICIPIO_FOLDER + page;
+
+	@GetMapping()
+	public ResponseEntity<List<MunicipioModel>> getAll(){
+		List<MunicipioModel> municipio = municipioRep.findAll();
+
+		return ResponseEntity.ok(municipio);
 	}
-	
-	@GetMapping
-	public String getAll(Model model) {
-		
-		model.addAttribute("municipios", municipioRep.findAll());
-		
-		return MUNICIPIO_FOLDER + "municipios";
-		
-	}
-	
+
 	@GetMapping("/{id}")
-	public String findById(@PathVariable("id") int id, Model model) {
-		
-		model.addAttribute("municipio", municipioRep.findById(id).get());
-		
-		return MUNICIPIO_FOLDER + "atualizarMunicipio";
+	public ResponseEntity<MunicipioModel> findById(@PathVariable("id") int id, Model model) {
+
+		MunicipioModel municipioModel =  municipioRep.findById(id).get();
+
+		return ResponseEntity.ok(municipioModel);
 	}
-	
-	
-	@PostMapping
-	public String save(@Valid MunicipioModel municipioModel,  BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model){
-	
+
+
+	@PostMapping()
+	public ResponseEntity save(@RequestBody @Valid MunicipioModel municipioModel, @RequestParam BindingResult bindingResult) {
+
 		if(bindingResult.hasErrors()) {
-			return MUNICIPIO_FOLDER + "cadastroMunicipio";
+			return ResponseEntity.badRequest().build();
 		}
+		 municipioModel=  municipioRep.save(municipioModel);
+
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(municipioModel.getIdMunicipio()).toUri();
 		
-		municipioRep.save(municipioModel);
-		redirectAttributes.addFlashAttribute("messages", "Municipio cadastrado com sucesso");		
-		
-		return "redirect:/municipio";
+		return ResponseEntity.created(location).build();
 	} 
 	
 	
 	@PutMapping("/{id}")
-	public String update(@PathVariable("id") int id, @Valid MunicipioModel municipioModel, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+	public ResponseEntity update(@PathVariable("id") int id, @RequestBody @Valid MunicipioModel municipioModel, BindingResult bindingResult) {
 		
 		if(bindingResult.hasErrors()) {
-			return MUNICIPIO_FOLDER + "atualizarMunicipio";
+			return ResponseEntity.badRequest().build();
 		}
 		
 		municipioModel.setIdMunicipio(id);
 		municipioRep.save(municipioModel);
-		redirectAttributes.addFlashAttribute("messages", "Municipio alterado com sucesso");
-		
-		
-		return "redirect:/municipio";
+
+		return ResponseEntity.ok().build();
 	}
 	
 	@DeleteMapping("/{id}")
-	public String deleteById(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
+	public ResponseEntity deleteById(@PathVariable("id") int id) {
 		
 		municipioRep.deleteById(id);
-		redirectAttributes.addFlashAttribute("messages", "Municipio excluido com sucesso!");
 
-		return "redirect:/municipio";
+		return ResponseEntity.noContent().build();
 	}
 	
 }

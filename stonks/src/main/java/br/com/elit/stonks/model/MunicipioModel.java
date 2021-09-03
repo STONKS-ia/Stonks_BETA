@@ -34,7 +34,6 @@ public class MunicipioModel {
 		
 	}
 
-
 	@Id
 	@Column(name="ID_MUNICIPIO")
 	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="MUNICIPIOS_SEQ")
