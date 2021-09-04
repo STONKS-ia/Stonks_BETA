@@ -1,14 +1,9 @@
 package br.com.elit.stonks.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 
@@ -19,6 +14,7 @@ public class MunicipioModel {
 	private int idMunicipio;
 	private String nomeMunicipio;
 	private String urlPortal;
+	private List<ArquivoModel> arquivos = new ArrayList();
 	
 	public MunicipioModel(int idMunicipio, String nomeMunicipio, String urlPortal) {
 		super();
@@ -62,5 +58,13 @@ public class MunicipioModel {
 	public void setUrlPortal(String urlPortal) {
 		this.urlPortal = urlPortal;
 	}
-	
+
+	@OneToMany(mappedBy = "municipio")
+	public List<ArquivoModel> getArquivos() {
+		return arquivos;
+	}
+
+	public void setArquivos(List<ArquivoModel> arquivos) {
+		this.arquivos = arquivos;
+	}
 }

@@ -10,10 +10,7 @@ import br.com.elit.stonks.model.UsuarioModel;
 
 public interface UsuarioRepository extends JpaRepository<UsuarioModel, Integer>{
 
-	
-	@Query(nativeQuery = true, value="SELECT * FROM usuarios AS  user " +
-            "WHERE (nome like concat ('%', ?1, '%')) OR ?1 IS NULL " +
-			"AND (email like concat ('%', ?2, '%')) OR ?2 IS NULL" + ";")
+	@Query("SELECT user FROM UsuarioModel user WHERE (user.nome like concat ('%', ?1, '%')) OR ?1 IS NULL AND (user.email like concat ('%', ?2, '%')) OR ?2 IS NULL")
 	List<UsuarioModel> getAllFilter(String name, String email);
 		
 	

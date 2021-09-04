@@ -2,6 +2,7 @@ package br.com.elit.stonks.controller;
 
 import javax.validation.Valid;
 ;
+import br.com.elit.stonks.model.UsuarioModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -22,11 +23,12 @@ public class MunicipioController {
 	@Autowired
 	MunicipioRepository municipioRep;
 
-	@GetMapping()
-	public ResponseEntity<List<MunicipioModel>> getAll(){
-		List<MunicipioModel> municipio = municipioRep.findAll();
-
-		return ResponseEntity.ok(municipio);
+	@GetMapping("/list")
+	public ResponseEntity<List<MunicipioModel>> findById(@RequestParam String name) {
+		if(name.isEmpty())
+			name = "";
+		List<MunicipioModel> municipioModel = municipioRep.getAllFilter(name);
+		return ResponseEntity.ok(municipioModel);
 	}
 
 	@GetMapping("/{id}")

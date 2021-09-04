@@ -29,6 +29,10 @@ public class UsuarioController {
 	}
 	@GetMapping("/list")
 	public ResponseEntity<List<UsuarioModel>> findById(@RequestParam String name, @RequestParam String email) {
+		if(name.isEmpty())
+			name = "";
+		if(email.isEmpty())
+			email = "";
 		List<UsuarioModel> usuarioModel = usuarioRep.getAllFilter(name, email);
 		return ResponseEntity.ok(usuarioModel);
 	}
