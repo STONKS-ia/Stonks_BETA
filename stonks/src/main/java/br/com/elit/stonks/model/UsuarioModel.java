@@ -21,14 +21,16 @@ public class UsuarioModel {
 	private String telefone;
 	private String senha;
 	private MunicipioModel municipio;
+	private FuncionarioModel funcionario;
 
-	public UsuarioModel(int idUsuario, String email, String nome,String telefone, String senha, MunicipioModel municipio) {
+	public UsuarioModel(int idUsuario, String email, String nome,String telefone, String senha, MunicipioModel municipio, FuncionarioModel funcionario) {
 		this.idUsuario = idUsuario;
 		this.email = email;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.senha = senha;
 		this.municipio = municipio;
+		this.funcionario = funcionario;
 	}
 
 	public UsuarioModel() {
@@ -94,6 +96,16 @@ public class UsuarioModel {
 
 	public void setMunicipio(MunicipioModel municipio) {
 		this.municipio = municipio;
+	}
+
+	@ManyToOne
+	@JoinColumn(name = "ID_FUNCIONARIO", nullable = false)
+	public FuncionarioModel getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(FuncionarioModel funcionario) {
+		this.funcionario = funcionario;
 	}
 
 }

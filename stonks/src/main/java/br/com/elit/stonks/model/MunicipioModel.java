@@ -13,7 +13,6 @@ public class MunicipioModel {
 	private int idMunicipio;
 	private String nomeMunicipio;
 	private String urlPortal;
-	private List<ArquivoModel> arquivos = new ArrayList();
 	
 	public MunicipioModel(int idMunicipio, String nomeMunicipio, String urlPortal) {
 		super();
@@ -58,12 +57,4 @@ public class MunicipioModel {
 		this.urlPortal = urlPortal;
 	}
 
-	@OneToMany(mappedBy = "MunicpioModel")
-	public List<ArquivoModel> getArquivos() {
-		return arquivos;
-	}
-
-	public void setArquivos(List<ArquivoModel> arquivos) {
-		this.arquivos = arquivos;
-	}
 }

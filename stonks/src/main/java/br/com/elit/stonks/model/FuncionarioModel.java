@@ -1,5 +1,7 @@
 package br.com.elit.stonks.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -7,21 +9,21 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="FUNCIONARIO")
+@Table(name="FUNCIONARIOS")
 public class FuncionarioModel {
     private int idFuncionario;
     private String nomeCompleto;
     private String cargo;
     private String cpf;
-    private Date dtNascimente;
+    private String dtNascimento;
     private String cep;
     private List<UsuarioModel> usuarios = new ArrayList();
 
-    public FuncionarioModel(String nomeCompleto, String cargo, String cpf, Date dtNascimente, String cep) {
+    public FuncionarioModel(String nomeCompleto, String cargo, String cpf, String dtNascimento, String cep) {
         this.nomeCompleto = nomeCompleto;
         this.cargo = cargo;
         this.cpf = cpf;
-        this.dtNascimente = dtNascimente;
+        this.dtNascimento = dtNascimento;
         this.cep = cep;
     }
 
@@ -39,6 +41,7 @@ public class FuncionarioModel {
     public void setIdFuncionario(int idFuncionario) {
         this.idFuncionario = idFuncionario;
     }
+
     @Column(name="NOME_FUNCIONARIO")
     @Size(min = 2, max = 50, message = "NOME deve ser entre 2 e 50 caracteres")
     public String getNomeCompleto() {
@@ -68,12 +71,12 @@ public class FuncionarioModel {
     }
     @Column(name="DT_NASCIMENTO")
     @Size(min = 2, max = 50, message = "NOME deve ser entre 2 e 50 caracteres")
-    public Date getDtNascimente() {
-        return dtNascimente;
+    public String getDtNascimente() {
+        return dtNascimento;
     }
 
-    public void setDtNascimente(Date dtNascimente) {
-        this.dtNascimente = dtNascimente;
+    public void setDtNascimente(String dtNascimente) {
+        this.dtNascimento = dtNascimento;
     }
     @Column(name="CEP")
     @Size(min = 2, max = 50, message = "NOME deve ser entre 2 e 50 caracteres")
@@ -82,17 +85,17 @@ public class FuncionarioModel {
     }
 
     public void setCep(String cep) {
-
         this.cep = cep;
     }
-    @OneToMany(mappedBy = "FuncionarioModel")
+
+    @OneToMany(mappedBy = "funcionario")
     public List<UsuarioModel> getUsuarios() {
         return usuarios;
     }
 
     public void setUsuarios(List<UsuarioModel> usuarios) {
-
         this.usuarios = usuarios;
     }
+
 
 }

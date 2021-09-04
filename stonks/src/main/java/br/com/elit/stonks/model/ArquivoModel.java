@@ -1,15 +1,10 @@
 package br.com.elit.stonks.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 
@@ -19,14 +14,12 @@ public class ArquivoModel {
 
     private int idArquivo;
     private String nomeArquivo;
-    private Date dataEnvio;
+    private LocalDate dataEnvio = LocalDate.now();
     private MunicipioModel municipio;
 
-    public ArquivoModel(int idArquivo, String nomeArquivo, Date dataEnvio) {
-        super();
-        this.idArquivo = idArquivo;
+    public ArquivoModel(String nomeArquivo, MunicipioModel municipio) {
         this.nomeArquivo = nomeArquivo;
-        this.dataEnvio = dataEnvio;
+        this.municipio = municipio;
     }
 
     public ArquivoModel() {
@@ -57,12 +50,22 @@ public class ArquivoModel {
 
     @Column(name="DATA_ENVIO")
     @Size(min = 7, max = 50, message = "URL deve ser entre 7 e 50 caracteres")
-    public Date getDataEnvio() {
+    public LocalDate getDataEnvio() {
         return this.dataEnvio;
     }
 
-    public void setDataEnvio(Date dataEnvio) {
+    public void setDataEnvio(LocalDate dataEnvio) {
         this.dataEnvio = dataEnvio;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "ID_MUNICIPIO", nullable = false)
+    public MunicipioModel getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(MunicipioModel municipio) {
+        this.municipio = municipio;
     }
 
 }

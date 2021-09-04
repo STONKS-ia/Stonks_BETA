@@ -22,11 +22,18 @@ public class UsuarioController {
 	@Autowired
 	UsuarioRepository usuarioRep;
 
+	@GetMapping()
+	public ResponseEntity<List<UsuarioModel>> findById() {
+		List<UsuarioModel> usuarioModel = usuarioRep.findAll();
+		return ResponseEntity.ok(usuarioModel);
+	}
+
 	@GetMapping("/{id}")
 	public ResponseEntity<UsuarioModel> findById(@PathVariable("id") Integer id, Model model) {
 		UsuarioModel usuarioModel = usuarioRep.findById(id).get();
 		return ResponseEntity.ok(usuarioModel);
 	}
+
 	@GetMapping("/list")
 	public ResponseEntity<List<UsuarioModel>> findById(@RequestParam String name, @RequestParam String email) {
 		if(name.isEmpty())
@@ -47,7 +54,7 @@ public class UsuarioController {
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(usuarioModel.getIdUsuario()).toUri();
 
-		return ResponseEntity.created(location).build();
+		return ResponseEntity.created(location).header("Atualizado").body("Municipio Atualizado");
 	}
 
 
@@ -61,15 +68,15 @@ public class UsuarioController {
 		usuarioModel.setIdUsuario(id);
 		usuarioRep.save(usuarioModel);
 
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok().header("Atualizado").body("Municipio Atualizado");
 	}
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity deleteById(@PathVariable("id") int id) {
+	@DeleteMapping()
+	public ResponseEntity deleteById(@RequestParam Integer id) {
 
 		usuarioRep.deleteById(id);
 
-		return ResponseEntity.noContent().build();
+		return ResponseEntity.ok().header("Deletad").body("Municipio Atualizado");
 	}
 	
 	
