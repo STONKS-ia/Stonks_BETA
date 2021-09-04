@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/arquivo")
 public class ArquivoController {
-	
+
 	@Autowired
 	ArquivoRepository arquivoRep;
 
@@ -47,14 +47,14 @@ public class ArquivoController {
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(arquivo.getIdArquivo()).toUri();
-		
+
 		return ResponseEntity.created(location).build();
-	} 
-	
-	
+	}
+
+
 	@PutMapping("/{id}")
 	public ResponseEntity update(@PathVariable("id") int id, @RequestBody @Valid ArquivoModel arquivo, BindingResult bindingResult) {
-		
+
 		if(bindingResult.hasErrors()) {
 			return ResponseEntity.badRequest().build();
 		}
@@ -64,7 +64,7 @@ public class ArquivoController {
 
 		return ResponseEntity.ok().build();
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity deleteById(@PathVariable("id") int id) {
 
@@ -72,5 +72,5 @@ public class ArquivoController {
 
 		return ResponseEntity.noContent().build();
 	}
-	
+
 }

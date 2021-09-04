@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
-
 @Entity
 @Table(name="MUNICIPIOS")
 public class MunicipioModel {
@@ -59,7 +58,7 @@ public class MunicipioModel {
 		this.urlPortal = urlPortal;
 	}
 
-	@OneToMany(mappedBy = "municipio")
+	@OneToMany(mappedBy = "MunicpioModel")
 	public List<ArquivoModel> getArquivos() {
 		return arquivos;
 	}

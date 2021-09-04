@@ -20,6 +20,7 @@ public class ArquivoModel {
     private int idArquivo;
     private String nomeArquivo;
     private Date dataEnvio;
+    private MunicipioModel municipio;
 
     public ArquivoModel(int idArquivo, String nomeArquivo, Date dataEnvio) {
         super();

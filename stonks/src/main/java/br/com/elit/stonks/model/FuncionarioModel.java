@@ -2,10 +2,12 @@ package br.com.elit.stonks.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name="FUNCIONARIOS")
+@Table(name="FUNCIONARIO")
 public class FuncionarioModel {
     private int idFuncionario;
     private String nomeCompleto;
@@ -13,15 +15,14 @@ public class FuncionarioModel {
     private String cpf;
     private Date dtNascimente;
     private String cep;
-    private UsuarioModel usuario;
+    private List<UsuarioModel> usuarios = new ArrayList();
 
-    public FuncionarioModel(String nomeCompleto, String cargo, String cpf, Date dtNascimente, String cep, UsuarioModel usuario) {
+    public FuncionarioModel(String nomeCompleto, String cargo, String cpf, Date dtNascimente, String cep) {
         this.nomeCompleto = nomeCompleto;
         this.cargo = cargo;
         this.cpf = cpf;
         this.dtNascimente = dtNascimente;
         this.cep = cep;
-        this.usuario = usuario;
     }
 
     public FuncionarioModel() {
@@ -81,14 +82,17 @@ public class FuncionarioModel {
     }
 
     public void setCep(String cep) {
+
         this.cep = cep;
     }
-
-    public UsuarioModel getUsuario() {
-        return usuario;
+    @OneToMany(mappedBy = "FuncionarioModel")
+    public List<UsuarioModel> getUsuarios() {
+        return usuarios;
     }
 
-    public void setUsuario(UsuarioModel usuario) {
-        this.usuario = usuario;
+    public void setUsuarios(List<UsuarioModel> usuarios) {
+
+        this.usuarios = usuarios;
     }
+
 }
