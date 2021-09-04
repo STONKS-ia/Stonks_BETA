@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -20,8 +19,6 @@ public class MunicipioModel {
 	private int idMunicipio;
 	private String nomeMunicipio;
 	private String urlPortal;
-	
-	private List<UsuarioModel> usuarios;
 	
 	public MunicipioModel(int idMunicipio, String nomeMunicipio, String urlPortal) {
 		super();
@@ -65,14 +62,5 @@ public class MunicipioModel {
 	public void setUrlPortal(String urlPortal) {
 		this.urlPortal = urlPortal;
 	}
-	
-	@OneToMany(mappedBy = "municipio")
-	public List<UsuarioModel> getUsuarios(){
-		return usuarios;
-	}
-	
-	public void setUsuarios(List<UsuarioModel> usuarios) {
-		this.usuarios = usuarios;
-	}	
 	
 }

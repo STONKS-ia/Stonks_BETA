@@ -2,6 +2,7 @@ package br.com.elit.stonks.controller;
 
 import javax.validation.Valid;
 
+import br.com.elit.stonks.model.MunicipioModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -20,19 +21,15 @@ public class UsuarioController {
 
 	@Autowired
 	UsuarioRepository usuarioRep;
-	
-	@GetMapping()
-	public ResponseEntity<List<UsuarioModel>> getAll(){
-		List<UsuarioModel> usuario = usuarioRep.findAll();
-
-		return ResponseEntity.ok(usuario);
-	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<UsuarioModel> findById(@PathVariable("id") Integer id, Model model) {
-		
 		UsuarioModel usuarioModel = usuarioRep.findById(id).get();
-		
+		return ResponseEntity.ok(usuarioModel);
+	}
+	@GetMapping("/list")
+	public ResponseEntity<List<UsuarioModel>> findById(@RequestParam String name, @RequestParam String email) {
+		List<UsuarioModel> usuarioModel = usuarioRep.getAllFilter(name, email);
 		return ResponseEntity.ok(usuarioModel);
 	}
 

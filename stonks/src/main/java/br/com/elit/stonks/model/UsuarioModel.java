@@ -17,14 +17,15 @@ public class UsuarioModel {
 
 	private int idUsuario;
 	private String email;
+	private String nome;
 	private String telefone;
 	private String senha;
 	private MunicipioModel municipio;
 
-	public UsuarioModel(int idUsuario, String email, String telefone, String senha, MunicipioModel municipio) {
-		super();
+	public UsuarioModel(int idUsuario, String email, String nome,String telefone, String senha, MunicipioModel municipio) {
 		this.idUsuario = idUsuario;
 		this.email = email;
+		this.nome = nome;
 		this.telefone = telefone;
 		this.senha = senha;
 		this.municipio = municipio;
@@ -55,8 +56,18 @@ public class UsuarioModel {
 		this.email = email;
 	}
 
+	@Column(name = "NOME")
+	@Size(min = 2, max = 50, message = "Nome deve ser entre 2 e 50 caracteres")
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 	@Column(name = "TELEFONE")
-	@Size(min = 11, max = 11, message = "TELEFONE deve ter 11 n�meros. N�o esque�a o DDD")
+	@Size(min = 11, max = 11, message = "TELEFONE deve ter 11 numeros. Nao esqueca o DDD")
 	public String getTelefone() {
 		return telefone;
 	}

@@ -37,7 +37,6 @@ public class MunicipioController {
 		return ResponseEntity.ok(municipioModel);
 	}
 
-
 	@PostMapping()
 	public ResponseEntity save(@RequestBody @Valid MunicipioModel municipioModel, @RequestParam BindingResult bindingResult) {
 
