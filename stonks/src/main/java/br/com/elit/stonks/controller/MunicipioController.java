@@ -6,7 +6,6 @@ import br.com.elit.stonks.model.UsuarioModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,12 +23,6 @@ public class MunicipioController {
 	@Autowired
 	MunicipioRepository municipioRep;
 
-	@GetMapping()
-	public ResponseEntity<List<MunicipioModel>> findById() {
-		List<MunicipioModel> municipioModel = municipioRep.findAll();
-		return ResponseEntity.ok(municipioModel);
-	}
-
 	@GetMapping("/list")
 	public ResponseEntity<List<MunicipioModel>> findById(@RequestParam String name) {
 		if(name.isEmpty())
@@ -40,12 +33,14 @@ public class MunicipioController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<MunicipioModel> findById(@PathVariable("id") int id, Model model) {
+
 		MunicipioModel municipioModel =  municipioRep.findById(id).get();
+
 		return ResponseEntity.ok(municipioModel);
 	}
 
 	@PostMapping()
-	public ResponseEntity save(@RequestBody @Valid MunicipioModel municipioModel, BindingResult bindingResult) {
+	public ResponseEntity save(@RequestBody @Valid MunicipioModel municipioModel, @RequestParam BindingResult bindingResult) {
 
 		if(bindingResult.hasErrors()) {
 			return ResponseEntity.badRequest().build();
@@ -55,7 +50,7 @@ public class MunicipioController {
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(municipioModel.getIdMunicipio()).toUri();
 		
-		return ResponseEntity.created(location).header("Criado").body("Municipio criado");
+		return ResponseEntity.created(location).build();
 	} 
 	
 	
@@ -69,13 +64,15 @@ public class MunicipioController {
 		municipioModel.setIdMunicipio(id);
 		municipioRep.save(municipioModel);
 
-		return ResponseEntity.ok().header("Atualizado").body("Municipio Atualizado");
+		return ResponseEntity.ok().build();
 	}
-
-	@DeleteMapping()
-	public ResponseEntity deleteById(@RequestParam int id) {
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity deleteById(@PathVariable("id") int id) {
+		
 		municipioRep.deleteById(id);
-		return ResponseEntity.ok().header("Deleted").body("Municipio Deletado");
+
+		return ResponseEntity.noContent().build();
 	}
 	
 }

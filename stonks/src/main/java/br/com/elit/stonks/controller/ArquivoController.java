@@ -19,58 +19,58 @@ import java.util.List;
 @RequestMapping("/arquivo")
 public class ArquivoController {
 
-	@Autowired
-	ArquivoRepository arquivoRep;
+    @Autowired
+    ArquivoRepository arquivoRep;
 
-	@GetMapping()
-	public ResponseEntity<List<ArquivoModel>> getAll(){
-		List<ArquivoModel> arquivos = arquivoRep.findAll();
+    @GetMapping()
+    public ResponseEntity<List<ArquivoModel>> getAll(){
+        List<ArquivoModel> arquivos = arquivoRep.findAll();
 
-		return ResponseEntity.ok(arquivos);
-	}
+        return ResponseEntity.ok(arquivos);
+    }
 
-	@GetMapping("/{id}")
-	public ResponseEntity<ArquivoModel> findById(@PathVariable("id") int id, Model model) {
+    @GetMapping("/{id}")
+    public ResponseEntity<ArquivoModel> findById(@PathVariable("id") int id, Model model) {
 
-		ArquivoModel arquivo = arquivoRep.findById(id).get();
+        ArquivoModel arquivo = arquivoRep.findById(id).get();
 
-		return ResponseEntity.ok(arquivo);
-	}
+        return ResponseEntity.ok(arquivo);
+    }
 
-	@PostMapping()
-	public ResponseEntity save(@RequestBody @Valid ArquivoModel arquivo, @RequestParam BindingResult bindingResult) {
+    @PostMapping()
+    public ResponseEntity save(@RequestBody @Valid ArquivoModel arquivo, @RequestParam BindingResult bindingResult) {
 
-		if(bindingResult.hasErrors()) {
-			return ResponseEntity.badRequest().build();
-		}
-		arquivo = arquivoRep.save(arquivo);
+        if(bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().build();
+        }
+        arquivo = arquivoRep.save(arquivo);
 
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(arquivo.getIdArquivo()).toUri();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(arquivo.getIdArquivo()).toUri();
 
-		return ResponseEntity.created(location).build();
-	}
+        return ResponseEntity.created(location).build();
+    }
 
 
-	@PutMapping("/{id}")
-	public ResponseEntity update(@PathVariable("id") int id, @RequestBody @Valid ArquivoModel arquivo, BindingResult bindingResult) {
+    @PutMapping("/{id}")
+    public ResponseEntity update(@PathVariable("id") int id, @RequestBody @Valid ArquivoModel arquivo, BindingResult bindingResult) {
 
-		if(bindingResult.hasErrors()) {
-			return ResponseEntity.badRequest().build();
-		}
+        if(bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().build();
+        }
 
-		arquivo.setIdArquivo(id);
-		arquivoRep.save(arquivo);
+        arquivo.setIdArquivo(id);
+        arquivoRep.save(arquivo);
 
-		return ResponseEntity.ok().build();
-	}
+        return ResponseEntity.ok().build();
+    }
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity deleteById(@PathVariable("id") int id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteById(@PathVariable("id") int id) {
 
-		arquivoRep.deleteById(id);
+        arquivoRep.deleteById(id);
 
-		return ResponseEntity.noContent().build();
-	}
+        return ResponseEntity.noContent().build();
+    }
 
 }

@@ -46,15 +46,15 @@ public class UsuarioController {
 
 	@PostMapping
 	public ResponseEntity save(@RequestBody @Valid UsuarioModel usuarioModel, BindingResult bindingResult){
-		if(bindingResult.hasErrors()){
-			return ResponseEntity.badRequest().build();
-		}
-		usuarioModel = usuarioRep.save(usuarioModel);
+			if(bindingResult.hasErrors()){
+				return ResponseEntity.badRequest().build();
+			}
+			usuarioModel = usuarioRep.save(usuarioModel);
 
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(usuarioModel.getIdUsuario()).toUri();
+			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+					.buildAndExpand(usuarioModel.getIdUsuario()).toUri();
 
-		return ResponseEntity.created(location).header("Atualizado").body("Municipio Atualizado");
+			return ResponseEntity.created(location).header("Atualizado").body("Municipio Atualizado");
 	}
 
 
@@ -73,9 +73,7 @@ public class UsuarioController {
 
 	@DeleteMapping()
 	public ResponseEntity deleteById(@RequestParam Integer id) {
-
 		usuarioRep.deleteById(id);
-
 		return ResponseEntity.ok().header("Deletad").body("Municipio Atualizado");
 	}
 	
