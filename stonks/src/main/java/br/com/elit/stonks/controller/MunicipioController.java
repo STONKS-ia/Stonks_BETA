@@ -2,6 +2,7 @@ package br.com.elit.stonks.controller;
 
 import javax.validation.Valid;
 ;
+import br.com.elit.stonks.model.ArquivoModel;
 import br.com.elit.stonks.model.UsuarioModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,13 @@ public class MunicipioController {
 	@Autowired
 	MunicipioRepository municipioRep;
 
+	@GetMapping()
+	public ResponseEntity<List<MunicipioModel>> getAll(){
+		List<MunicipioModel> municipioModel = municipioRep.findAll();
+
+		return ResponseEntity.ok(municipioModel);
+	}
+
 	@GetMapping("/list")
 	public ResponseEntity<List<MunicipioModel>> findById(@RequestParam String name) {
 		if(name.isEmpty())
@@ -40,7 +48,7 @@ public class MunicipioController {
 	}
 
 	@PostMapping()
-	public ResponseEntity save(@RequestBody @Valid MunicipioModel municipioModel, @RequestParam BindingResult bindingResult) {
+	public ResponseEntity save(@RequestBody @Valid MunicipioModel municipioModel, BindingResult bindingResult) {
 
 		if(bindingResult.hasErrors()) {
 			return ResponseEntity.badRequest().build();
@@ -50,7 +58,7 @@ public class MunicipioController {
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(municipioModel.getIdMunicipio()).toUri();
 		
-		return ResponseEntity.created(location).build();
+		return ResponseEntity.created(location).header("Criado").body("Municipio criado");
 	} 
 	
 	
@@ -64,15 +72,7 @@ public class MunicipioController {
 		municipioModel.setIdMunicipio(id);
 		municipioRep.save(municipioModel);
 
-		return ResponseEntity.ok().build();
-	}
-	
-	@DeleteMapping("/{id}")
-	public ResponseEntity deleteById(@PathVariable("id") int id) {
-		
-		municipioRep.deleteById(id);
-
-		return ResponseEntity.noContent().build();
+		return ResponseEntity.ok().header("Atualizado").body("Municipio Atualizado");
 	}
 	
 }

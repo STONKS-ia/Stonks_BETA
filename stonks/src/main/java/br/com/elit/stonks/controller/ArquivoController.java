@@ -2,6 +2,7 @@ package br.com.elit.stonks.controller;
 
 import br.com.elit.stonks.model.ArquivoModel;
 import br.com.elit.stonks.model.ArquivoModel;
+import br.com.elit.stonks.model.MunicipioModel;
 import br.com.elit.stonks.repository.ArquivoRepository;
 import br.com.elit.stonks.repository.MunicipioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +37,18 @@ public class ArquivoController {
 
         return ResponseEntity.ok(arquivo);
     }
+    @GetMapping("/list")
+    public ResponseEntity<List<ArquivoModel>> findById(@RequestParam String name, @RequestParam String nomeMunicipio) {
+        if(name.isEmpty())
+            name = "";
+        if(nomeMunicipio.isEmpty())
+            nomeMunicipio = "";
+        List<ArquivoModel> arquivo = arquivoRep.getAllFilter(name, nomeMunicipio);
+        return ResponseEntity.ok(arquivo);
+    }
 
     @PostMapping()
-    public ResponseEntity save(@RequestBody @Valid ArquivoModel arquivo, @RequestParam BindingResult bindingResult) {
+    public ResponseEntity save(@RequestBody @Valid ArquivoModel arquivo, BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().build();
@@ -48,7 +58,7 @@ public class ArquivoController {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(arquivo.getIdArquivo()).toUri();
 
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).header("Criado").body("Arquivo criado");
     }
 
 
@@ -62,7 +72,7 @@ public class ArquivoController {
         arquivo.setIdArquivo(id);
         arquivoRep.save(arquivo);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().header("Atualizado").body("Arquivo atualizado");
     }
 
     @DeleteMapping("/{id}")
@@ -70,7 +80,7 @@ public class ArquivoController {
 
         arquivoRep.deleteById(id);
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().header("Deletado").body("Arquivo deletado");
     }
 
 }

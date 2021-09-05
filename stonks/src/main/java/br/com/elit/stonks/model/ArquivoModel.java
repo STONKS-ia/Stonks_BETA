@@ -49,7 +49,6 @@ public class ArquivoModel {
     }
 
     @Column(name="DATA_ENVIO")
-    @Size(min = 7, max = 50, message = "URL deve ser entre 7 e 50 caracteres")
     public LocalDate getDataEnvio() {
         return this.dataEnvio;
     }

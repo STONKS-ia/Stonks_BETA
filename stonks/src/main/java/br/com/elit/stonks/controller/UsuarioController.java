@@ -23,7 +23,7 @@ public class UsuarioController {
 	UsuarioRepository usuarioRep;
 
 	@GetMapping()
-	public ResponseEntity<List<UsuarioModel>> findById() {
+	public ResponseEntity<List<UsuarioModel>> getAll() {
 		List<UsuarioModel> usuarioModel = usuarioRep.findAll();
 		return ResponseEntity.ok(usuarioModel);
 	}
@@ -54,7 +54,7 @@ public class UsuarioController {
 			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 					.buildAndExpand(usuarioModel.getIdUsuario()).toUri();
 
-			return ResponseEntity.created(location).header("Atualizado").body("Municipio Atualizado");
+			return ResponseEntity.created(location).header("Atualizado").body("Usuario Criado");
 	}
 
 
@@ -68,13 +68,13 @@ public class UsuarioController {
 		usuarioModel.setIdUsuario(id);
 		usuarioRep.save(usuarioModel);
 
-		return ResponseEntity.ok().header("Atualizado").body("Municipio Atualizado");
+		return ResponseEntity.ok().header("Atualizado").body("Usuario Atualizado");
 	}
 
-	@DeleteMapping()
-	public ResponseEntity deleteById(@RequestParam Integer id) {
+	@DeleteMapping("/{id}")
+	public ResponseEntity deleteById(@PathVariable("id") int id) {
 		usuarioRep.deleteById(id);
-		return ResponseEntity.ok().header("Deletad").body("Municipio Atualizado");
+		return ResponseEntity.ok().header("Deletad").body("Usuario Deletado");
 	}
 	
 	

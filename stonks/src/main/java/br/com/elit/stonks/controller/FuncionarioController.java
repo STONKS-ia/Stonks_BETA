@@ -36,9 +36,20 @@ public class FuncionarioController {
 
 		return ResponseEntity.ok(funcionario);
 	}
+	@GetMapping("/list")
+	public ResponseEntity<List<FuncionarioModel>> findById(@RequestParam String name, @RequestParam String cpf,@RequestParam String cargo) {
+		if(name.isEmpty())
+			name = "";
+		if(cpf.isEmpty())
+			cpf = "";
+		if(cargo.isEmpty())
+			cargo = "";
+		List<FuncionarioModel> funcionario = funcionarioRep.getAllFilter(name,cpf,cargo);
+		return ResponseEntity.ok(funcionario);
+	}
 
 	@PostMapping()
-	public ResponseEntity save(@RequestBody @Valid FuncionarioModel funcionario, @RequestParam BindingResult bindingResult) {
+	public ResponseEntity save(@RequestBody @Valid FuncionarioModel funcionario, BindingResult bindingResult) {
 
 		if(bindingResult.hasErrors()) {
 			return ResponseEntity.badRequest().build();
@@ -48,21 +59,21 @@ public class FuncionarioController {
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(funcionario.getIdFuncionario()).toUri();
 
-		return ResponseEntity.created(location).build();
+		return ResponseEntity.created(location).header("Criado").body("Funcionario Criado");
 	}
 
 
 	@PutMapping("/{id}")
-	public ResponseEntity update(@PathVariable("id") int id, @RequestBody @Valid FuncionarioModel arquivo, BindingResult bindingResult) {
+	public ResponseEntity update(@PathVariable("id") int id, @RequestBody @Valid FuncionarioModel funcionario, BindingResult bindingResult) {
 
 		if(bindingResult.hasErrors()) {
 			return ResponseEntity.badRequest().build();
 		}
 
-		arquivo.setIdFuncionario(id);
-		funcionarioRep.save(arquivo);
+		funcionario.setIdFuncionario(id);
+		funcionarioRep.save(funcionario);
 
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok().header("Atualizado").body("Funcionario Atualizado");
 	}
 
 	@DeleteMapping("/{id}")
@@ -70,7 +81,7 @@ public class FuncionarioController {
 
 		funcionarioRep.deleteById(id);
 
-		return ResponseEntity.noContent().build();
+		return ResponseEntity.ok().header("Deletado").body("Funcionario Deletado");
 	}
 
 }

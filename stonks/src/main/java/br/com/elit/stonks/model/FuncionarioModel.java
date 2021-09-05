@@ -17,7 +17,6 @@ public class FuncionarioModel {
     private String cpf;
     private String dtNascimento;
     private String cep;
-    private List<UsuarioModel> usuarios = new ArrayList();
 
     public FuncionarioModel(String nomeCompleto, String cargo, String cpf, String dtNascimento, String cep) {
         this.nomeCompleto = nomeCompleto;
@@ -87,15 +86,5 @@ public class FuncionarioModel {
     public void setCep(String cep) {
         this.cep = cep;
     }
-
-    @OneToMany(mappedBy = "funcionario")
-    public List<UsuarioModel> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<UsuarioModel> usuarios) {
-        this.usuarios = usuarios;
-    }
-
 
 }

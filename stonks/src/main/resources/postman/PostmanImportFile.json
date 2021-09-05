@@ -1,0 +1,642 @@
+{
+	"info": {
+		"_postman_id": "f9ccc6cc-02ba-42e0-9fb9-7cdb70c61f65",
+		"name": "Stonks_beta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Criar usuário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"soneca@outlook\",\r\n    \"nome\": null,\r\n    \"telefone\": \"12345678901\",\r\n    \"senha\": \"senha\",\r\n    \"municipio\": {\r\n        \"idMunicipio\": 1,\r\n        \"nomeMunicipio\": \"Itapevi\",\r\n        \"urlPortal\": \"www.portalItapevi.com.br\"\r\n    },\r\n    \"funcionario\": {\r\n        \"idFuncionario\": 1,\r\n        \"nomeCompleto\": \"Laura Antonella Milena da Mata\",\r\n        \"cargo\": \"Gerente de Financeiro\",\r\n        \"cpf\": \"085.914.290-60\",\r\n        \"cep\": \"74535-410\",\r\n        \"dtNascimente\": null\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/elit/usuario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar usuários",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/elit/usuario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar usuário por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/elit/usuario/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"usuario",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar por nome/email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/elit/usuario/list?email=email&name=",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"usuario",
+								"list"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "email"
+								},
+								{
+									"key": "name",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aterar usuário",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"email\": \"email@outlook.com\",\r\n        \"nome\": \"53413\",\r\n        \"telefone\": \"11914356789\",\r\n        \"senha\": \"senha421\",\r\n        \"municipio\": {\r\n            \"idMunicipio\": 4,\r\n            \"nomeMunicipio\": \"Guarulhos\",\r\n            \"urlPortal\": \"www.gruPortal.com.br\"\r\n        },\r\n        \"funcionario\": {\r\n            \"idFuncionario\": 3,\r\n            \"nomeCompleto\": \"Natália Sophia Isabela Gonçalves\",\r\n            \"cargo\": \"Analista de dados Jr\",\r\n            \"cpf\": \"483.358.401-80\",\r\n            \"cep\": \"72978-970\",\r\n            \"dtNascimente\": null\r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/elit/usuario/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"usuario",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar usuário",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/elit/usuario/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"usuario",
+								"6"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Municipio",
+			"item": [
+				{
+					"name": "Criar municipio",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "   {\r\n        \"nomeMunicipio\": \"Campinhas\",\r\n        \"urlPortal\": \"Shoppingland.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/elit/municipio/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"municipio",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar municípios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/elit/municipio",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"municipio"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista por nome",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/elit/municipio/list?name=Campinas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"municipio",
+								"list"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Campinas"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar municipio por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/elit/municipio/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"municipio",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aterar municipio",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "   {\r\n        \"nomeMunicipio\": \"Campinas\",\r\n        \"urlPortal\": \"Shoppingland.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/elit/municipio/9",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"municipio",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Arquivo",
+			"item": [
+				{
+					"name": "Criar arquivo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeArquivo\": \"relatorio semanal\",\r\n    \"municipio\": {\r\n        \"idMunicipio\": 4,\r\n        \"nomeMunicipio\": \"Guarulhos\",\r\n        \"urlPortal\": \"www.gruPortal.com.br\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/elit/arquivo",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"arquivo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar aquivos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/elit/arquivo",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"arquivo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar arquivos por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/elit/arquivo/8",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"arquivo",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar por município",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/elit/arquivo/list?name=Relatorio&nomeMunicipio=",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"arquivo",
+								"list"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Relatorio"
+								},
+								{
+									"key": "nomeMunicipio",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aterar arquivo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"nomeArquivo\": \"Relatorio de teste\",\r\n        \"dataEnvio\": \"2301-07-12\",\r\n        \"municipio\": {\r\n            \"idMunicipio\": 3,\r\n            \"nomeMunicipio\": \"São Matheus\",\r\n            \"urlPortal\": \"www.sanMathew.com.br\"\r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/elit/arquivo/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"arquivo",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar arquivo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/elit/arquivo/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"arquivo",
+								"1"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Funcionario",
+			"item": [
+				{
+					"name": "Criar funcionario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeCompleto\": \"Dalila\",\r\n    \"cargo\": \"gerente\",\r\n    \"cpf\": \"1234\",\r\n    \"dtNascimento\": \"12/07/2001\",\r\n    \"cep\": \"2131\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/elit/funcionario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"funcionario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar funcionarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/elit/funcionario",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"funcionario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar funcionário por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/elit/funcionario/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"funcionario",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar por CPF, Cargo ou Nome",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/elit/funcionario/list?cpf=&name=&cargo=",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"funcionario",
+								"list"
+							],
+							"query": [
+								{
+									"key": "cpf",
+									"value": ""
+								},
+								{
+									"key": "name",
+									"value": ""
+								},
+								{
+									"key": "cargo",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aterar funcionário",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"nomeCompleto\": \"Laura Antonella Milena da Mata\",\r\n        \"cargo\": \"Estágio\",\r\n        \"cpf\": \"085.914.290-60\",\r\n        \"cep\": \"74535-410\",\r\n        \"dtNascimente\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/elit/funcionario/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"funcionario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar funcionário",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/elit/funcionario/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"elit",
+								"funcionario",
+								"1"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
