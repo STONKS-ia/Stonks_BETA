@@ -50,6 +50,7 @@ public class FuncionarioModel {
     public void setNomeCompleto(String nomeCompleto) {
         this.nomeCompleto = nomeCompleto;
     }
+
     @Column(name="CARGO")
     @Size(min = 2, max = 50, message = "CARGO deve ser entre 2 e 50 caracteres")
     public String getCargo() {
@@ -68,15 +69,17 @@ public class FuncionarioModel {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
     @Column(name="DT_NASCIMENTO")
     @Size(min = 2, max = 50, message = "NOME deve ser entre 2 e 50 caracteres")
-    public String getDtNascimente() {
+    public String getDtNascimento() {
         return dtNascimento;
     }
 
-    public void setDtNascimente(String dtNascimente) {
+    public void setDtNascimento(String dtNascimento) {
         this.dtNascimento = dtNascimento;
     }
+
     @Column(name="CEP")
     @Size(min = 2, max = 50, message = "NOME deve ser entre 2 e 50 caracteres")
     public String getCep() {

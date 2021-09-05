@@ -69,7 +69,7 @@ public class UsuarioModel {
 	}
 
 	@Column(name = "TELEFONE")
-	@Size(min = 11, max = 11, message = "TELEFONE deve ter 11 numeros. Nao esqueca o DDD")
+	@Size(min = 13, max = 13, message = "TELEFONE deve ter 11 numeros. Nao esqueca o DDD")
 	public String getTelefone() {
 		return telefone;
 	}
